@@ -55,13 +55,13 @@ function Billing() {
             />
             <PaymentStatistics
               icon={<Icon h={"24px"} w={"24px"} color='white' as={FaWallet} />}
-              title={"Salary"}
+              title={"Subscriptions"}
               description={"Belong interactive"}
               amount={2000}
             />
             <PaymentStatistics
               icon={<Icon h={"24px"} w={"24px"} color='white' as={FaPaypal} />}
-              title={"Paypal"}
+              title={"Sales"}
               description={"Freelance Payment"}
               amount={4550}
             />

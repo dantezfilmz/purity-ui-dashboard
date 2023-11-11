@@ -80,13 +80,13 @@ export default function Dashboard() {
         templateRows={{ sm: "1fr auto", md: "1fr", lg: "1fr" }}
         gap='24px'>
         <Projects
-          title={"Projects"}
+          title={"Programmes"}
           amount={30}
-          captions={["Companies", "Members", "Budget", "Completion"]}
+          captions={["Instructors", "Members", "Date", "Completion"]}
           data={dashboardTableData}
         />
         <OrdersOverview
-          title={"Orders Overview"}
+          title={"Appointments Overview"}
           amount={30}
           data={timelineData}
         />
