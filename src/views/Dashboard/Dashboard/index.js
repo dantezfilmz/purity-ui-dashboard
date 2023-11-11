@@ -65,12 +65,12 @@ export default function Dashboard() {
         gap='24px'
         mb={{ lg: "26px" }}>
         <ActiveUsers
-          title={"Active Users"}
+          title={"Active Members"}
           percentage={23}
           chart={<BarChart />}
         />
         <SalesOverview
-          title={"Sales Overview"}
+          title={"Income Overview"}
           percentage={5}
           chart={<LineChart />}
         />
