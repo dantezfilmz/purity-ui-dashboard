@@ -1,7 +1,7 @@
 // import
 import Dashboard from "views/Dashboard/Dashboard";
 import Inventory from "views/Dashboard/Inventory";
-import Tables from "views/Dashboard/Tables";
+import Members from "views/Dashboard/Members";
 import Billing from "views/Dashboard/Billing";
 import RTLPage from "views/Dashboard/RTL";
 import Profile from "views/Dashboard/Profile";
@@ -50,10 +50,10 @@ var dashRoutes = [
     state: "pageCollapse",
     views: [
       {
-        path: "/tables",
+        path: "/members",
         name: "Members",
         icon: <PersonIcon color="inherit" />,
-        component: Tables,
+        component: Members,
         layout: "/admin",
       },
       {

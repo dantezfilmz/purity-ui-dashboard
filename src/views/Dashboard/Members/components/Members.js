@@ -1,6 +1,5 @@
 // Chakra imports
 import {
-  Flex,
   Table,
   Tbody,
   Text,
@@ -13,24 +12,22 @@ import {
 import Card from "components/Card/Card.js";
 import CardBody from "components/Card/CardBody.js";
 import CardHeader from "components/Card/CardHeader.js";
-import TablesProjectRow from "components/Tables/TablesProjectRow";
+import TablesTableRow from "components/Tables/TablesTableRow";
 import React from "react";
 
-const Projects = ({ title, captions, data }) => {
+const MembersTable = ({ title, captions, data }) => {
   const textColor = useColorModeValue("gray.700", "white");
   return (
-    <Card my='22px' overflowX={{ sm: "scroll", xl: "hidden" }}>
+    <Card overflowX={{ sm: "scroll", xl: "hidden" }}>
       <CardHeader p='6px 0px 22px 0px'>
-        <Flex direction='column'>
-          <Text fontSize='lg' color={textColor} fontWeight='bold' pb='.5rem'>
-            {title}
-          </Text>
-        </Flex>
+        <Text fontSize='xl' color={textColor} fontWeight='bold'>
+          {title}
+        </Text>
       </CardHeader>
       <CardBody>
         <Table variant='simple' color={textColor}>
           <Thead>
-            <Tr my='.8rem' pl='0px'>
+            <Tr my='.8rem' pl='0px' color='gray.400'>
               {captions.map((caption, idx) => {
                 return (
                   <Th color='gray.400' key={idx} ps={idx === 0 ? "0px" : null}>
@@ -43,13 +40,15 @@ const Projects = ({ title, captions, data }) => {
           <Tbody>
             {data.map((row) => {
               return (
-                <TablesProjectRow
-                  key={row.name}
+                <TablesTableRow
+                  key={`${row.email}-${row.name}`}
                   name={row.name}
                   logo={row.logo}
+                  email={row.email}
+                  subdomain={row.subdomain}
+                  domain={row.domain}
                   status={row.status}
-                  budget={row.budget}
-                  progression={row.progression}
+                  date={row.date}
                 />
               );
             })}
@@ -60,4 +59,4 @@ const Projects = ({ title, captions, data }) => {
   );
 };
 
-export default Projects;
+export default MembersTable;
