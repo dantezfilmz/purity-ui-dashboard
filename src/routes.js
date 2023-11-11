@@ -1,5 +1,6 @@
 // import
 import Dashboard from "views/Dashboard/Dashboard";
+import Inventory from "views/Dashboard/Inventory";
 import Tables from "views/Dashboard/Tables";
 import Billing from "views/Dashboard/Billing";
 import RTLPage from "views/Dashboard/RTL";
@@ -37,10 +38,10 @@ var dashRoutes = [
   },
 
   {
-    path: "/rtl-support-page",
+    path: "/inventory",
     name: "Inventory",
     icon: <DocumentIcon color="inherit" />,
-    component: RTLPage,
+    component: Inventory,
     layout: "/admin",
   },
   {

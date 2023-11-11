@@ -73,6 +73,56 @@ export const dashboardTableData = [
     progression: 40,
   },
 ];
+export const EquipmentTableData = [
+  {
+    logo: AdobexdLogo,
+    name: "Purity UI Version",
+    description: "A sleek and modern UI design.",
+    amenities: true,
+    condition: "Excellent",
+    progression: 60,
+  },
+  {
+    logo: AtlassianLogo,
+    name: "Add Progress Track",
+    description: "Implement a progress tracking feature.",
+    amenities: false,
+    condition: "Good",
+    progression: 10,
+  },
+  {
+    logo: SlackLogo,
+    name: "Fix Platform Errors",
+    description: "Address and resolve errors on the platform.",
+    amenities: true,
+    condition: "Fair",
+    progression: 100,
+  },
+  {
+    logo: SpotifyLogo,
+    name: "Launch our Mobile App",
+    description: "Launch the mobile application for users.",
+    amenities: false,
+    condition: "Excellent",
+    progression: 100,
+  },
+  {
+    logo: JiraLogo,
+    name: "Add the New Pricing Page",
+    description: "Integrate a new pricing page on the platform.",
+    amenities: true,
+    condition: "Good",
+    progression: 25,
+  },
+  {
+    logo: InvisionLogo,
+    name: "Redesign New Online Shop",
+    description: "Redesign the online shop for an enhanced user experience.",
+    amenities: false,
+    condition: "Fair",
+    progression: 40,
+  },
+];
 
 export const timelineData = [
   {
