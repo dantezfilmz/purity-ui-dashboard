@@ -3,10 +3,11 @@ import Dashboard from "views/Dashboard/Dashboard";
 import Inventory from "views/Dashboard/Inventory";
 import Members from "views/Dashboard/Members";
 import Billing from "views/Dashboard/Billing";
-import RTLPage from "views/Dashboard/RTL";
 import Profile from "views/Dashboard/Profile";
 import SignIn from "views/Auth/SignIn.js";
 import SignUp from "views/Auth/SignUp.js";
+import Staff from "views/Dashboard/Staff";
+import Appointment from "views/Dashboard/Appointment";
 
 import {
   HomeIcon,
@@ -16,9 +17,10 @@ import {
   PersonIcon,
   DocumentIcon,
   RocketIcon,
+  ClockIcon,
   SupportIcon,
 } from "components/Icons/Icons";
-import { ClockIcon } from "components/Icons/Icons";
+
 
 var dashRoutes = [
   {
@@ -57,19 +59,19 @@ var dashRoutes = [
         layout: "/admin",
       },
       {
-        path: "/rtl-support-page",
+        path: "/staff",
         name: "Staff",
         icon: <ProfileIcon color="inherit" />,
-        component: RTLPage,
+        component: Staff,
         layout: "/admin",
       },
       {
-        path: "/signup",
+        path: "/appointment",
         name: "Appointments",
         icon: <ClockIcon color="inherit" />,
         secondaryNavbar: true,
-        component: SignUp,
-        layout: "/auth",
+        component: Appointment,
+        layout: "/admin",
       },
     ],
   },
