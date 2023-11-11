@@ -178,7 +178,7 @@ const SidebarContent = ({ logoText, routes }) => {
 
   return (
     <>
-        <Box pt={"25px"} mb="12px">
+        <Box pt={"25px"} mb="12px" >
       <Link
         href={`${process.env.PUBLIC_URL}/#/`}
         target="_blank"
@@ -197,8 +197,8 @@ const SidebarContent = ({ logoText, routes }) => {
       </Link>
       <Separator></Separator>
     </Box>
-          <Stack direction="column" mb="40px">
-            <Box>{links}</Box>
+          <Stack direction="column" mb="40px" >
+            <Box >{links}</Box>
           </Stack>
           <SidebarHelp />
     </>

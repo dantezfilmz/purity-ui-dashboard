@@ -29,7 +29,7 @@ function Sidebar(props) {
   // SIDEBAR
   return (
     <Box ref={mainPanel}>
-      <Box display={{ sm: "none", xl: "block" }} position="fixed">
+      <Box display={{ sm: "none", xl: "block" }} position="fixed" >
         <Box
           bg={sidebarBg}
           transition={variantChange}
@@ -46,6 +46,7 @@ function Sidebar(props) {
           pe="20px"
           m={sidebarMargins}
           borderRadius={sidebarRadius}
+          overflowY={"scroll"}
         >
           <SidebarContent routes={routes}
         logoText={"PURITY UI DASHBOARD"}
