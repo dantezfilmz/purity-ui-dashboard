@@ -13,49 +13,62 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import signInImage from "assets/img/signInImage.png";
+import { useAuth } from "../../context/Auth";
+import { useHistory } from "react-router-dom";
+const inputFields = [
+  { name: 'email', label: 'Email', type: 'text', placeholder: 'Your email address' },
+  { name: 'password', label: 'Password', type: 'password', placeholder: 'Your password' },
+];
 
 function SignIn() {
   const titleColor = useColorModeValue("teal.300", "teal.200");
   const textColor = useColorModeValue("gray.400", "white");
+  const [loading, setLoading] = useState(false);
+  const [formState, setFormState] = useState({
+    email: '',
+    password: '',
+    rememberMe: false,
+  });
+  const [formErrors, setFormErrors] = useState({
+    email: '',
+    password: '',
+  });
+  const { login } = useAuth()
+  const navigate = useHistory();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
-
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-    setEmailError("");
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-    setPasswordError("");
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormState((prevState) => ({ ...prevState, [name]: value }));
+    setFormErrors((prevErrors) => ({ ...prevErrors, [name]: '' }));
   };
 
   const handleRememberMeChange = () => {
-    setRememberMe(!rememberMe);
+    setFormState((prevState) => ({ ...prevState, rememberMe: !prevState.rememberMe }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Simple email validation
-    if (!email || !email.includes("@")) {
-      setEmailError("Please enter a valid email address.");
-      return;
-    }
+    try {
+      // Simple email validation
+      if (!formState.email || !formState.email.includes("@")) {
+        setFormErrors((prevErrors) => ({ ...prevErrors, email: "Please enter a valid email address." }));
+        return;
+      }
 
-    // Simple password validation
-    if (!password) {
-      setPasswordError("Please enter your password.");
-      return;
-    }
+      // Simple password validation
+      if (!formState.password) {
+        setFormErrors((prevErrors) => ({ ...prevErrors, password: "Please enter your password." }));
+        return;
+      }
 
-    // Your form submission logic goes here
-    console.log("Form submitted:", { email, password, rememberMe });
+      const { data: { user, session }, error } = await login(formState.email, formState.password)
+      if (user && session) navigate.push("/");
+    } catch (error) {
+      alert(error)
+    }
+    setLoading(false);
+
   };
 
   return (
@@ -95,32 +108,26 @@ function SignIn() {
               Enter your email and password to sign in
             </Text>
             <FormControl>
-              <FormLabel ms="4px" fontSize="sm" fontWeight="normal">
-                Email
-              </FormLabel>
-              <Input
-                borderRadius="15px"
-                mb="24px"
-                fontSize="sm"
-                type="text"
-                placeholder="Your email address"
-                size="lg"
-                onChange={handleEmailChange}
-              />
-              {emailError && <Text color="red">{emailError}</Text>}
-              <FormLabel ms="4px" fontSize="sm" fontWeight="normal">
-                Password
-              </FormLabel>
-              <Input
-                borderRadius="15px"
-                mb="36px"
-                fontSize="sm"
-                type="password"
-                placeholder="Your password"
-                size="lg"
-                onChange={handlePasswordChange}
-              />
-              {passwordError && <Text color="red">{passwordError}</Text>}
+              {inputFields.map((field) => (
+                <React.Fragment key={field.name}>
+                  <FormLabel ms="4px" fontSize="sm" fontWeight="normal">
+                    {field.label}
+                  </FormLabel>
+                  <Input
+                    borderRadius="15px"
+                    id = {`field-${field.name}`}
+                    mb={field.name === 'password' ? '36px' : '24px'}
+                    fontSize="sm"
+                    type={field.type}
+                    placeholder={field.placeholder}
+                    size="lg"
+                    name={field.name}
+                    value={formState[field.name]}
+                    onChange={handleInputChange}
+                  />
+                  {formErrors[field.name] && <Text color="red">{formErrors[field.name]}</Text>}
+                </React.Fragment>
+              ))}
               <FormControl display="flex" alignItems="center">
                 <Switch
                   id="remember-login"
@@ -147,6 +154,7 @@ function SignIn() {
                 color="white"
                 mt="20px"
                 onClick={handleSubmit}
+                disabled={loading} 
                 _hover={{
                   bg: "teal.200",
                 }}
